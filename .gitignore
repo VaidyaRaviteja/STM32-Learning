@@ -1,0 +1,28 @@
+# STM32CubeIDE build output
+Debug/
+Release/
+
+# Eclipse / STM32CubeIDE workspace files
+.metadata/
+.recommenders/
+
+# Eclipse settings
+.settings/
+
+# Compiled files
+*.o
+*.elf
+*.hex
+*.bin
+*.map
+*.list
+
+# Dependency files
+*.d
+
+# STM32CubeIDE generated build files
+*.su
+
+# OS files
+Thumbs.db
+.DS_Store
