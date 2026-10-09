@@ -89,17 +89,8 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13) == GPIO_PIN_RESET)
-    {
-      char message[] = "Button Pressed\r\n";
-
-      HAL_UART_Transmit(&huart2,
-                        (uint8_t *)message,
-                        strlen(message),
-                        HAL_MAX_DELAY);
-
-      HAL_Delay(300);
-    }
+      HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
+      HAL_Delay(500);
   }
   /* USER CODE END WHILE */
 
