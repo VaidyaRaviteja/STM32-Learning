@@ -91,21 +91,27 @@ int main(void)
   uint8_t rx_data;
 
 
+
   while (1)
   {
-      // Wait until one character is received
+      // Wait for one character from UART
       if (HAL_UART_Receive(&huart2, &rx_data, 1, HAL_MAX_DELAY) == HAL_OK)
       {
-          // Toggle LD2 when '1' is received
           if (rx_data == '1')
           {
-              HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
+              HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET);   // LED ON
+          }
+          else if (rx_data == '0')
+          {
+              HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET); // LED OFF
           }
 
-          // Send the received character back to the terminal
+          // Echo the received character
           HAL_UART_Transmit(&huart2, &rx_data, 1, HAL_MAX_DELAY);
       }
   }
+
+
 
   /* USER CODE END WHILE */
 
