@@ -87,11 +87,26 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+
+  uint8_t rx_data;
+
+
   while (1)
   {
-      HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
-      HAL_Delay(500);
+      // Wait until one character is received
+      if (HAL_UART_Receive(&huart2, &rx_data, 1, HAL_MAX_DELAY) == HAL_OK)
+      {
+          // Toggle LD2 when '1' is received
+          if (rx_data == '1')
+          {
+              HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
+          }
+
+          // Send the received character back to the terminal
+          HAL_UART_Transmit(&huart2, &rx_data, 1, HAL_MAX_DELAY);
+      }
   }
+
   /* USER CODE END WHILE */
 
 }   /* <-- closes main() */
